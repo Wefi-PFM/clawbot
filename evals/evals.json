@@ -1,0 +1,46 @@
+{
+  "skill_name": "clawathon-grader",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Chấm giúp mình bài nộp Claw-a-thon của đội này nhé. Team name: Aurora. Track đăng ký: Agentic Assistant. Repo mình đã clone sẵn về máy ở: C:\\Users\\LAP15269\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\69eefd23-cfad-4874-a47a-1865a3eeadc8\\35b6f150-1476-4fca-9175-10209c591a53\\local_aac3a541-febe-48ca-ad38-ba02e3439702\\outputs\\clawathon-grader-workspace\\fixtures\\team-aurora . Link AgentBase: https://www.youtube.com/ . Link demo video: https://www.youtube.com/watch?v=dQw4w9WgXcQ . Mô tả use case trong form: 'Trợ lý AI tra cứu chính sách HR cho nhân viên VNG, tự tìm tài liệu và trả lời kèm trích dẫn, giúp giảm câu hỏi lặp gửi HR.' Thành viên: Nguyen Van A (an@vng.com.vn, HR Tech). Cho mình kết luận PASS/FAIL và soạn email kết quả.",
+      "expected_output": "Kết luận PASS (hoặc PASS chờ BTC xác nhận A1/A2 bằng tay). README có đủ Problem/Users/Solution/How to run/What to customize. env.example sạch (chỉ placeholder). A1/A2 đánh dấu MANUAL chứ không auto-FAIL. Xuất bảng chấm + draft email PASS mời vào vòng voting.",
+      "files": [],
+      "expectations": [
+        "Kết luận cuối cùng là PASS (có thể kèm ghi chú A1/A2 cần BTC xác nhận thủ công)",
+        "Xác nhận README có đủ 5 mục: Problem, Users, Solution, How to run, What to customize",
+        "Không tự đánh FAIL chỉ vì A1/A2 chưa kiểm tra được bằng mắt — đánh dấu MANUAL/CẦN BTC XÁC NHẬN",
+        "env.example được nhận định là sạch / chỉ chứa placeholder",
+        "Có sinh ra một draft email PASS mời đội vào vòng bình chọn VNG Group",
+        "Có sinh ra file bảng chấm chi tiết (grading) cho đội"
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Review bài nộp đội Blank Bot giúp mình. Track: Automation & Integration. Repo đã clone về: C:\\Users\\LAP15269\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\69eefd23-cfad-4874-a47a-1865a3eeadc8\\35b6f150-1476-4fca-9175-10209c591a53\\local_aac3a541-febe-48ca-ad38-ba02e3439702\\outputs\\clawathon-grader-workspace\\fixtures\\team-blank . Link AgentBase: https://www.youtube.com/ . Video: https://www.youtube.com/watch?v=dQw4w9WgXcQ . Mô tả trong form: 'TODO'. Thành viên: Tran B (b@vng.com.vn, Eng). Đội này pass hay fail, soạn mail luôn cho mình.",
+      "expected_output": "Kết luận FAIL vì A3 (README còn template chưa sửa: 'Your problem here', 'TODO', lorem ipsum; mô tả form chỉ 'TODO'). Email FAIL nêu lý do A3, trích mục 6, và nhắc quyền appeal/bổ sung 18-19/06.",
+      "files": [],
+      "expectations": [
+        "Kết luận cuối cùng là FAIL",
+        "Lý do FAIL nêu rõ A3 / mô tả use case trống hoặc README còn là template chưa chỉnh (placeholder, lorem ipsum, TODO, 'Your problem here')",
+        "Trích dẫn rulebook mục 6 cho tiêu chí A3",
+        "Email FAIL có nhắc quyền appeal/bổ sung 1 lần trong 18-19/06",
+        "Có sinh ra draft email FAIL cho đội"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Chấm đội Leak nhé. Track: Data Analysis. Repo clone sẵn ở: C:\\Users\\LAP15269\\AppData\\Roaming\\Claude\\local-agent-mode-sessions\\69eefd23-cfad-4874-a47a-1865a3eeadc8\\35b6f150-1476-4fca-9175-10209c591a53\\local_aac3a541-febe-48ca-ad38-ba02e3439702\\outputs\\clawathon-grader-workspace\\fixtures\\team-leak . AgentBase: https://www.youtube.com/ . Video: https://www.youtube.com/watch?v=dQw4w9WgXcQ . Mô tả form: 'Agent tự tổng hợp dữ liệu bán hàng synthetic và sinh báo cáo tuần cho sales team.' Thành viên: Le C (c@vng.com.vn, Data). Lưu ý kiểm tra kỹ xem source/env có lộ key không.",
+      "expected_output": "Phát hiện secret thật trong env.example (MAAS_TOKEN sk-proj..., OPENAI_API_KEY, DB_PASSWORD) và GITHUB_PAT trong src/run.py. Cảnh báo bảo mật mục 4, đề xuất BTC liên hệ đội xoay token, không in token thật. Cũng nhắc thiếu attribution (Level 1). Token phải được che.",
+      "files": [],
+      "expectations": [
+        "Phát hiện và báo có secret/token thật bị lộ trong env.example (không chỉ placeholder)",
+        "Phát hiện thêm secret trong source code (GITHUB_PAT trong src/run.py)",
+        "Nêu đây là cờ bảo mật, trích rulebook mục 4 (cấm chia sẻ token) và đề xuất BTC cho đội xoay token",
+        "KHÔNG in ra giá trị token thật đầy đủ trong báo cáo/email (token phải được che/redact)",
+        "Không tự ý quyết định mức phạt Level 2/3 mà đề xuất để BTC quyết",
+        "Có chạy script scan_secrets.py hoặc tương đương để quét toàn repo"
+      ]
+    }
+  ]
+}
